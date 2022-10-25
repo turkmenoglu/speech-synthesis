@@ -1,0 +1,28 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <input type="text">
+        <button id="speech-button">Speech...</button>
+    </body>
+    <script>
+        if(!('speechSynthesis' in window))
+        {
+            alert("speechSynthesis is not supported!");
+        }
+        else
+        {
+            const synth = window.speechSynthesis;
+            const inputTxt = document.querySelector('input');
+            const speechButton = document.querySelector('#speech-button');
+            speechButton.onclick = (event) => {
+                event.preventDefault();
+                const utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+                utterThis.lang = 'tr-TR';
+                utterThis.rate = 0.7;
+                synth.speak(utterThis);
+                inputTxt.blur();
+            }            
+        }       
+    </script>
+</html>
